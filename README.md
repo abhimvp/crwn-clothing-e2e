@@ -1,3 +1,21 @@
+### Authentication + Firebase
+
+We're going to build our sign in page using authentication so that we can store the users & refer to those users whenever anyone wants to access our application.
+
+- Firebase is a google platform that allows you to spin up a database.It helps us leverage some kind of database.
+- We will be leveraging Authentication & FireStore Database [MyFirebaseAccount](https://console.firebase.google.com/project/crwn-clothing-e2e-db/overview)
+- Now we need to allow our application to leverage Authentication and Firestore db from Firebase.To do that we need to install firebase library. `yarn add firebase`.
+- Understanding the flow of how firebase works with users and their gmail signIn.
+  Lets say as a `User` i use google-signIn to SignIn into our Website.
+  User Makes a request to google server saying i want to sign-in for this crw@gmail.com.
+  The google verifies the credentials & generates an `auth-token`.A unique hashed string.& sends that back to our website.
+  Then our webssite sends that `auth-token` to `firebase`.
+  Then Firebase asks google to verify this `auth-token`. if it's valid , google sends back a `verification-token`.
+  Then Firebase creates a `access-token`.This `access-token` is going to define what the user should be able to access.Inside of DB.It sends back to the website.
+  Then User with this `access-token` can make CRUD Requests.Then FIrebase is going to determine by verifying the access_token to what different things token has access to.
+
+* when it comes to interfacing with some kind of backend API's that might have particular nuances to it inside of it's own folder.So in case of firebase , Inside `src` folder , i will have `utils` folder , this is going to contain utility files.We make `firebase` folder and create `firebase.utils.jsx file`
+
 ### Routing + react-router
 
 [reactRouter](https://reactrouter.com/en/main) - Overview : React Router enables "client side routing".Client side routing allows your app to update the URL from a link click without making another request for another document from the server.Instead, your app can immediately render some new UI and make data requests with fetch to update the page with new information.In traditional websites, the browser requests a document from a web server, downloads and evaluates CSS and JavaScript assets, and renders the HTML sent from the server. When the user clicks a link, it starts the process all over again for a new page
