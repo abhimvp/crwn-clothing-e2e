@@ -1,4 +1,17 @@
-## yarn add sass
+### Routing + react-router
+
+[reactRouter](https://reactrouter.com/en/main) - Overview : React Router enables "client side routing".Client side routing allows your app to update the URL from a link click without making another request for another document from the server.Instead, your app can immediately render some new UI and make data requests with fetch to update the page with new information.In traditional websites, the browser requests a document from a web server, downloads and evaluates CSS and JavaScript assets, and renders the HTML sent from the server. When the user clicks a link, it starts the process all over again for a new page
+Install the dependencies - `yarn add react-router-dom@6`
+
+The Home Page should be the component that renders when your URL is the baseURL.The Navigation Bar should persist always no matter what different page we navigate to.
+
+- In order for us to confirm and tell our application that we want to use react router DOm , what we need to do is wrap the entire application in a router component that react-router-dom gives us.We will do it in index.js , it's where we render our `APP` as it's entirety.
+
+* create `routes` folder , that will hold all of our route top level components.
+* `import Routes & Route components`.With these two components we can actually assemble the routing at our application level.`Wrap the Home component with Routes component.`
+* what essentially `Routes` does is it allows this application to `register these route level component`s that in turn will render a specific component when it matches the specific route that we're looking for. So how do we know what route we're trying to match. we do it by giving it a specific `path` variable. `<Route path='/'>` this relative path matches to the baseURL.The moment this matches i want you to render HOME component by giving it in the element. `<Route path='/' element={<HOME/>}>`
+
+### yarn add sass
 
 Sass is a powerful CSS preprocessor that adds features like variables, nesting, mixins, and more, making your CSS more maintainable and organized. Dart Sass is the primary and recommended implementation. yarn add sass will install Dart Sass by default.In this project we have `categories.styles.scss`.Sass files (usually with the .scss extension) need to be compiled into CSS files before browsers can understand them.
 
