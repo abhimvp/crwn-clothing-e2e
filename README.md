@@ -9,7 +9,17 @@ The Home Page should be the component that renders when your URL is the baseURL.
 
 * create `routes` folder , that will hold all of our route top level components.
 * `import Routes & Route components`.With these two components we can actually assemble the routing at our application level.`Wrap the Home component with Routes component.`
-* what essentially `Routes` does is it allows this application to `register these route level component`s that in turn will render a specific component when it matches the specific route that we're looking for. So how do we know what route we're trying to match. we do it by giving it a specific `path` variable. `<Route path='/'>` this relative path matches to the baseURL.The moment this matches i want you to render HOME component by giving it in the element. `<Route path='/' element={<HOME/>}>`
+* what essentially `Routes` does is it allows this application to `register these route level component`s that in turn will render a specific component when it matches the specific route that we're looking for. So how do we know what route we're trying to match. we do it by giving it a specific `path` variable. `<Route path='/'>` this relative path matches to the baseURL.The moment this matches i want you to render HOME component by giving it in the element. `<Route path='/' element={<HOME/>}>`.
+* An <Outlet> should be used in parent route elements to render their child route elements. This allows nested UI to show up when child routes are rendered. If the parent route matched exactly, it will render a child index route or nothing if there is no index route.
+* To render Home component with Navigation component sitting at top level all the time , we use index in the nested route of home component , it tells react that what u need to render as well when there's / alone in the Navigation component ROute iunside of Outlet component.
+* In React, a `Fragment` is a special component that allows you to group multiple elements without adding an extra node to the DOM. It's essentially an "invisible" container.
+
+  - When to use Fragments
+  - When you need to return multiple elements from a component
+  - When you want to avoid adding unnecessary DOM nodes
+  - When you want to improve the readability of your JSX
+
+* styling : create assets folder to add logo images..etc
 
 ### yarn add sass
 
