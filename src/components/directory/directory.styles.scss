@@ -1,0 +1,39 @@
+.categories-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+// // In css we used to write css styles the following way
+
+// .categories-container{
+//     background-color: red;
+//     padding: 10px;
+// }
+
+// .categories-container .category-container{
+//     background-color: yellow;
+//     padding: 20px;
+// }
+
+// .categories-container .category-container .category-body-container{
+//     background-color:orange;
+//     padding: 30px;
+// }
+
+// sass makes it easier to nest the containers as follows
+// .categories-container{
+//     background-color: red;
+//     padding: 10px;
+
+//     .category-container{
+//         background-color: yellow;
+//         padding: 20px;
+
+//         .category-body-container{
+//                 background-color:orange;
+//                 padding: 30px;
+//             }
+//     }
+// }
