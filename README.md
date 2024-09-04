@@ -6,15 +6,27 @@ We're going to build our sign in page using authentication so that we can store 
 - We will be leveraging Authentication & FireStore Database [MyFirebaseAccount](https://console.firebase.google.com/project/crwn-clothing-e2e-db/overview)
 - Now we need to allow our application to leverage Authentication and Firestore db from Firebase.To do that we need to install firebase library. `yarn add firebase`.
 - Understanding the flow of how firebase works with users and their gmail signIn.
-  Lets say as a `User` i use google-signIn to SignIn into our Website.
-  User Makes a request to google server saying i want to sign-in for this crw@gmail.com.
-  The google verifies the credentials & generates an `auth-token`.A unique hashed string.& sends that back to our website.
-  Then our webssite sends that `auth-token` to `firebase`.
-  Then Firebase asks google to verify this `auth-token`. if it's valid , google sends back a `verification-token`.
-  Then Firebase creates a `access-token`.This `access-token` is going to define what the user should be able to access.Inside of DB.It sends back to the website.
-  Then User with this `access-token` can make CRUD Requests.Then FIrebase is going to determine by verifying the access_token to what different things token has access to.
+  - Lets say as a `User` i use google-signIn to SignIn into our Website.
+  - User Makes a request to google server saying i want to sign-in for this crw@gmail.com.
+  - The google verifies the credentials & generates an `auth-token`.A unique hashed string.& sends that back to our website.
+  - Then our webssite sends that `auth-token` to `firebase`.
+  - Then Firebase asks google to verify this `auth-token`. if it's valid , google sends back a `verification-token`.
+  - Then Firebase creates a `access-token`.This `access-token` is going to define what the user should be able to access.Inside of DB.\* It sends back to the website.
+  - Then User with this `access-token` can make CRUD Requests.Then FIrebase is going to determine by verifying the access_token to what different things token has access to.
 
 * when it comes to interfacing with some kind of backend API's that might have particular nuances to it inside of it's own folder.So in case of firebase , Inside `src` folder , i will have `utils` folder , this is going to contain utility files.We make `firebase` folder and create `firebase.utils.jsx file`
+
+* Next we have to make sure whenever a user Authenticates , we also create a record of them inside FireSTore DB.
+
+  - About FIrebase Data Model: It comprises of three things: There is the `collection > document > data`. `>` means let's say `inside of it.`
+
+  * We have collection of users , we will have a separate collection for users - we will know users inside of our db.
+  * Each document represents individual piece of data , so an independent user.
+  * Now the actual information related to that user is going to be data.
+    ![alt text](image.png)
+
+* Now go to console > create database > set location to closest to you > Go to Rules ( define who is allowed to modify what documents) . switch allow read , write from false to true as we're only developing it. Then hit publish.
+* now go to firebase.utils.js
 
 ### Routing + react-router
 

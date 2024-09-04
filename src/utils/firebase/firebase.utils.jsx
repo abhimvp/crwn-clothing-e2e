@@ -10,6 +10,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
+// doc method - retrive documents inside of our fireStore DB ( getting the document instance) & use getDOc & setDoc to read/get and set the data on these documents
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+
 // Your web app's Firebase configuration
 // we got this from firbase console - code for webApp
 const firebaseConfig = {
@@ -34,3 +37,38 @@ export const auth = getAuth(); // export our Authentication to create our instan
 // then go to sign-in component and import signInwithgooglePopup
 // also export the signInwith Google pop ip
 export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
+
+export const db = getFirestore(); // directly point to the db inside of our console.
+
+export const createUserDocumentFromAuth = async (userAuth) => {
+  // here we will be passing the user_access_token_response_object from which we gather uid
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  //   console.log(userDocRef);
+
+  const userSnapShot = await getDoc(userDocRef);
+  //   console.log(userSnapShot);
+  //   console.log(userSnapShot.exists()); // gives false as there's no db created / collection
+
+  // if the user data doesnotexist
+  // create / set the document with the data from userAuth in my collection
+  if (!userSnapShot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+    try {
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+      });
+    } catch (error) {
+      console.log("error creating the user ", error.message);
+    }
+  }
+
+  // if user data exists
+
+  return userDocRef;
+
+  // return back userDocRef
+};

@@ -1,10 +1,14 @@
-import { signInWithGooglePopUp } from "../../utils/firebase/firebase.utils";
+import {
+  signInWithGooglePopUp,
+  createUserDocumentFromAuth,
+} from "../../utils/firebase/firebase.utils";
 
 const SignIn = () => {
   const logGoogleUser = async () => {
     // remember whenever you make a call to database this is going to be asyncronous.
-    const response = await signInWithGooglePopUp();
-    console.log(response); // here we can see the access_token we get from google & firebase
+    const { user } = await signInWithGooglePopUp();
+    console.log(user); // here we can see the access_token we get from google & firebase
+    const userDocRef = await createUserDocumentFromAuth(user);
   };
 
   return (
