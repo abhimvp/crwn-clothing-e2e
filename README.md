@@ -1,3 +1,5 @@
+### React context for state Management
+
 ### Authentication + Firebase
 
 We're going to build our sign in page using authentication so that we can store the users & refer to those users whenever anyone wants to access our application.
