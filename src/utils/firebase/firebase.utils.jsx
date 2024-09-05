@@ -9,6 +9,7 @@ import {
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 // doc method - retrive documents inside of our fireStore DB ( getting the document instance) & use getDOc & setDoc to read/get and set the data on these documents
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -27,8 +28,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
   prompt: "select_account", // what this says is whenever someone interacts with our provider , we want to always force them to select an account.
 });
 
@@ -36,11 +37,18 @@ export const auth = getAuth(); // export our Authentication to create our instan
 // go to firebase console > Authentication > Sign-In Method > Select Google > Enable toggle > provide support email . Save
 // then go to sign-in component and import signInwithgooglePopup
 // also export the signInwith Google pop ip
-export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
+export const signInWithGooglePopUp = () =>
+  signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore(); // directly point to the db inside of our console.
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation
+) => {
+  if (!userAuth) return;
   // here we will be passing the user_access_token_response_object from which we gather uid
   const userDocRef = doc(db, "users", userAuth.uid);
 
@@ -60,6 +68,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         displayName,
         email,
         createdAt,
+        ...additionalInformation,
       });
     } catch (error) {
       console.log("error creating the user ", error.message);
@@ -71,4 +80,9 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   return userDocRef;
 
   // return back userDocRef
+};
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
 };

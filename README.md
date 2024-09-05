@@ -28,6 +28,18 @@ We're going to build our sign in page using authentication so that we can store 
 * Now go to console > create database > set location to closest to you > Go to Rules ( define who is allowed to modify what documents) . switch allow read , write from false to true as we're only developing it. Then hit publish.
 * now go to firebase.utils.js
 
+#### Purpose of the Three Dots (...)
+
+The three dots (...) in setFormFields({ ...formFields, [name]: value }); represent the spread syntax in JavaScript.
+
+In this context, its purpose is to:
+
+Copy: It creates a shallow copy of the formFields object. This is important because in React, you should avoid directly mutating state objects. Instead, you should create new state objects to trigger re-renders.
+
+Merge: It allows you to easily merge the copied properties from the existing formFields with the new property ([name]: value) representing the changed input field. This creates a new object with all the updated form field values.
+
+### Take notes from signUpFOrm Part2
+
 ### Routing + react-router
 
 [reactRouter](https://reactrouter.com/en/main) - Overview : React Router enables "client side routing".Client side routing allows your app to update the URL from a link click without making another request for another document from the server.Instead, your app can immediately render some new UI and make data requests with fetch to update the page with new information.In traditional websites, the browser requests a document from a web server, downloads and evaluates CSS and JavaScript assets, and renders the HTML sent from the server. When the user clicks a link, it starts the process all over again for a new page
