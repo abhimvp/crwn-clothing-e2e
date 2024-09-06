@@ -1,5 +1,14 @@
 ### React context for state Management
 
+![alt text](image-1.png)
+
+From the above picture we can see that from auth either through sign-in or sign-up component we get the `user` object which is needed by other siblings of auth - settings & orders components as well , so since the `app` is the corresponding highlevelCOmponent which can only be able to pass the `user` object to settings & orders compponent from `auth` component.`sign-in` can't pass it directly to them.As seen with components we can pass props doen into children.so how do we make this work?how do we get the `user`data from `sign-in` node to other `red-nodes`?
+![alt text](image-2.png)
+
+- This is where react context comes into picture , it allows us to store our data somewhere so that anyone needs it can access from it.This is context.
+
+* If you have multiple components that all listening to a context , even though they don't use the actual values , will cause react to re-run your function but not re-render anything to the DOM.
+
 ### Authentication + Firebase
 
 We're going to build our sign in page using authentication so that we can store the users & refer to those users whenever anyone wants to access our application.
