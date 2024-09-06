@@ -1,11 +1,12 @@
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   createUserDocumentFromAuth,
   signInWithGooglePopUp,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
+import { UserContext } from "../../contexts/user.context"; /// this userContext obj is going to give us back whatever value is passed in for the value (userCOntext.provider) , value is the currentUser of useState & as well as setCurrentUser function
 import "./sign-in-form.styles.scss";
 
 const defaultFormFields = {
@@ -15,6 +16,9 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+
+  const { setCurrentUser } = useContext(UserContext);
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -39,9 +43,11 @@ const SignInForm = () => {
         email,
         password
       );
+      // console.log("userContext-currentUserValue before Nav", currentUser);
+      setCurrentUser(user); // let's access this user inside Navigation component
       // await createUserDocumentFromAuth(user);
-      console.log("user exists");
-      console.log({ user });
+      // console.log("user exists");
+      // console.log({ user });
       resetFormFields();
     } catch (error) {
       console.log(error);
