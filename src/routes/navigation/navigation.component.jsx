@@ -6,6 +6,7 @@ import { ReactComponent as CrwonLogo } from "../../assets/crown.svg";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import "./navigation.styles.scss";
+import { CartContext } from "../../contexts/cart.context";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext); // useContext as a hook tells this component whenever a value inside of this context changes/updates re-render me
@@ -14,6 +15,7 @@ const Navigation = () => {
   //   await signOutUser();
   //   setCurrentUser(null);
   // };
+  const { isCartOpen } = useContext(CartContext);
   return (
     <Fragment>
       <div className="navigation">
@@ -36,7 +38,7 @@ const Navigation = () => {
           )}
           <CartIcon />
         </div>
-        <CartDropdown />
+        {isCartOpen && <CartDropdown />}
       </div>
       <Outlet />
     </Fragment>
