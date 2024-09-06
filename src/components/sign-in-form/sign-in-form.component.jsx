@@ -1,12 +1,12 @@
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
-  createUserDocumentFromAuth,
+  // createUserDocumentFromAuth,
   signInWithGooglePopUp,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
-import { UserContext } from "../../contexts/user.context"; /// this userContext obj is going to give us back whatever value is passed in for the value (userCOntext.provider) , value is the currentUser of useState & as well as setCurrentUser function
+// import { UserContext } from "../../contexts/user.context"; /// this userContext obj is going to give us back whatever value is passed in for the value (userCOntext.provider) , value is the currentUser of useState & as well as setCurrentUser function
 import "./sign-in-form.styles.scss";
 
 const defaultFormFields = {
@@ -17,16 +17,17 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
   const signInWithGoogle = async () => {
     // remember whenever you make a call to database this is going to be asyncronous.
-    const { user } = await signInWithGooglePopUp();
-    console.log(user); // here we can see the access_token we get from google & firebase
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopUp();
+    // setCurrentUser(user);
+    // console.log(user); // here we can see the access_token we get from google & firebase
+    // await createUserDocumentFromAuth(user); // we can move this into userContext whenever auth changes when user sign'in
   };
 
   const handleChange = (event) => {
@@ -39,12 +40,9 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await signInAuthUserWithEmailAndPassword(email, password);
       // console.log("userContext-currentUserValue before Nav", currentUser);
-      setCurrentUser(user); // let's access this user inside Navigation component
+      // setCurrentUser(user); // let's access this user inside Navigation component
       // await createUserDocumentFromAuth(user);
       // console.log("user exists");
       // console.log({ user });

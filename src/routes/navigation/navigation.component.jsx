@@ -6,12 +6,12 @@ import { ReactComponent as CrwonLogo } from "../../assets/crown.svg";
 import "./navigation.styles.scss";
 
 const Navigation = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext); // useContext as a hook tells this component whenever a value inside of this context changes/updates re-render me
+  const { currentUser } = useContext(UserContext); // useContext as a hook tells this component whenever a value inside of this context changes/updates re-render me
   // console.log("userCOntext-NavigationComp", currentUser);
-  const signOutHandler = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
+  // const signOutHandler = async () => {
+  //   await signOutUser();
+  //   setCurrentUser(null);
+  // };
   return (
     <Fragment>
       <div className="navigation">
@@ -24,7 +24,7 @@ const Navigation = () => {
             SHOP
           </Link>
           {currentUser ? (
-            <span className="nav-link" onClick={signOutHandler}>
+            <span className="nav-link" onClick={signOutUser}>
               SIGN OUT
             </span>
           ) : (
