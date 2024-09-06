@@ -1,9 +1,11 @@
 import "./product-card.styles.scss";
 import Button from "../button/button.component";
-
+// import { UserContext } from "../../contexts/user.context";
+// import { useContext } from "react";
+// import { CartContext } from "../../contexts/cart.context";
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
-
+  // const { setIsCartOpen } = useContext(CartContext);
   const addItemsToCart = () => {
     console.log("add to cart");
   };
