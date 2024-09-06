@@ -12,6 +12,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 // doc method - retrive documents inside of our fireStore DB ( getting the document instance) & use getDOc & setDoc to read/get and set the data on these documents
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -39,6 +40,7 @@ export const auth = getAuth(); // export our Authentication to create our instan
 // go to firebase console > Authentication > Sign-In Method > Select Google > Enable toggle > provide support email . Save
 // then go to sign-in component and import signInwithgooglePopup
 // also export the signInwith Google pop ip
+console.log(auth);
 export const signInWithGooglePopUp = () =>
   signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () =>
@@ -73,7 +75,7 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (error) {
-      console.log("error creating the user ", error.message);
+      console.log("error creating the userr ", error.message);
     }
   }
 
@@ -95,3 +97,8 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) => {
+  console.log("Inside onAuthStateChangedListener", auth);
+  onAuthStateChanged(auth, callback); // whenever u instantiate function you have to give me back callback , which will be given to onAuthStateChanged/
+};

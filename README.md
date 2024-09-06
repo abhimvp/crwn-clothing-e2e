@@ -1,3 +1,15 @@
+### Observer Pattern.
+
+React Context:
+
+- `Implicit Subscription:` Components using the useContext hook implicitly subscribe to changes in the context value.
+- `Context Provider as Subject:` The Context Provider acts somewhat like the "subject" in the Observer pattern. It holds the shared state and triggers re-renders in subscribing components whenever the context value changes.
+- `Consumers as Observers:` Components using useContext are akin to "observers." They are notified (via re-renders) when the context value they're interested in changes.
+
+* We can observer that we're spreading out all of the code w.r.t useContext in multiple places.So what we want to do is we want to be able to now move this code into one centralized place.And luckily for us `FIrebase` actually gives us a way to do that.
+* we can start using what's known as `observable listener`. An observable llistener is a way for us to hook into some kind of stream of events.we import onAuthStateChange from firebase/auth.
+  ![alt text](image-3.png)
+
 ### React context for state Management
 
 ![alt text](image-1.png)
