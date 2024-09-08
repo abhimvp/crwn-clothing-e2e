@@ -11,9 +11,9 @@ const App = () => {
       <Route path="/" element={<Navigation />}>
         <Route index element={<HOME />} />
         {/** this way it tell react to render home component with navigation bar component when there is index in the outlet component. */}
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/auth" element={<Authentication />} />
-        <Route path="/checkout" element={<CheckOut />} />
+        <Route path="shop/*" element={<Shop />} />
+        <Route path="auth" element={<Authentication />} />
+        <Route path="checkout" element={<CheckOut />} />
       </Route>
     </Routes>
   );
