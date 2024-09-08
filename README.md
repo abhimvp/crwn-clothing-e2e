@@ -1,4 +1,10 @@
-## apendix - key developer concepts:-
+### Firebase Database Storage
+
+By having a centralized source where you can control the data , it becomes much easier of a strategy of how you distribute that data & those products.So for us, we need to figure out how to mimic atleast interacting with such a
+
+- resource of a back-end such as data API endpoint for our products .
+
+### apendix - key developer concepts:-
 
 Understanding javascript asynchronous event handling:
 
