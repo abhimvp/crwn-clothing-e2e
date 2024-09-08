@@ -1,3 +1,34 @@
+## apendix - key developer concepts:-
+
+Understanding javascript asynchronous event handling:
+
+- with ES6 there was promises that got introduced as a means of handling asynchronous events.
+- asynchronous functions - we don't know when those would complete.
+  ![alt text](image-4.png)
+- so what we're getting with this promise is control over what we want to do with asynchronous events if they succed or fail.
+- By having reject , we are able to control the seperation of successful API callback from an unsuccessful API callback & that's the main benefit of using promises.
+- U can only call .then() on a resolved promise.
+  ![alt text](image-5.png)
+
+---
+
+- with ES7 , a new function that was introduced called Async await that will allow us to better handle how we write our asynchronous code.
+- It is a way to write functions that contain promise - oriented or asynchronous code that looks synchronous.
+  const myAsyncFunction = async () => { // javascript knows we want to make an async function.
+  // by using this async keyword within our async function , we're now allowed to use await keyword.
+  // what await does is it pauses function execution until what is being awaited is completed & comes back with value
+  const value=await fetch(someValue) // now what happens is until i get back something from fetch func the below lines of code will wait until fetch comes back with a value
+  }
+  ![alt text](image-6.png)
+  Add a try catch block to handle the error
+
+Array Methods - map() , filter() , reduce() , find() , includes()
+
+- map() method ->
+  - const myArray=[1,2,3,4]
+  - myArray.map(element => element+1) gives [2, 3, 4, 5]
+  - myArray.map(()=>"b") gives ['b', 'b', 'b', 'b']
+
 ### React context continued.
 
 https://css-tricks.com/snippets/css/complete-guide-grid/
